@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DecoBot Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <section id="intro" class="intro-screen hidden" aria-label="Intro animation">
+    <canvas id="introCanvas"></canvas>
+    <div id="introCopy" class="intro-copy">
+      <div style="position:relative; display:grid; place-items:center;">
+        <div id="logoBubble" class="logo-bubble">🤖</div>
+        <div id="shockwave" class="shockwave"></div>
+      </div>
+      <h1 id="introTitle" class="intro-title"></h1>
+      <p id="introSubtitle" class="intro-subtitle">v4.0 | Powered by DecodeLabs</p>
+    </div>
+  </section>
+
+  <section class="landing-page" id="home">
+    <div class="landing-shell">
+      <nav class="landing-nav">
+        <a class="nav-brand" href="#home"><span class="brand-mark">🤖</span> DecoBot</a>
+        <div class="nav-links">
+          <a class="nav-link" href="#home">Home</a>
+          <a class="nav-link" href="#features">Features</a>
+          <a class="nav-link" href="#how-it-works">How It Works</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#appShell">Launch App</a>
+        </div>
+        <button class="nav-btn" type="button" data-launch-app>Launch App</button>
+        <button class="theme-btn landing-theme-btn active" id="landingThemeLite" type="button" aria-label="Lite mode" style="border-radius:999px; border:1px solid rgba(148,163,184,0.25); background:rgba(255,255,255,0.92); color:#0f172a; padding:8px 10px; cursor:pointer; font-size:0.9rem;">☀️</button>
+        <button class="theme-btn landing-theme-btn" id="landingThemeDark" type="button" aria-label="Dark mode" style="border-radius:999px; border:1px solid rgba(148,163,184,0.25); background:rgba(255,255,255,0.92); color:#0f172a; padding:8px 10px; cursor:pointer; font-size:0.9rem;">🌙</button>
+      </nav>
+
+      <section class="landing-grid">
+        <article class="glass-card hero-card">
+          <span class="pill">Batch 2026 | DecodeLabs Industrial Training | Module 01</span>
+          <h1>Meet DecoBot — The Logic Engine That Never Hallucinates</h1>
+          <p>A rule-based AI assistant built on deterministic control flow. Zero hallucination risk. 100% predictable. Powered by DecodeLabs.</p>
+          <div class="hero-actions">
+            <a class="soft-btn" href="#core-ai-concepts">Explore Core Concepts ↓</a>
+            <a class="soft-btn" href="#how-it-works">See How It Works ↓</a>
+          </div>
+        </article>
+        <article class="glass-card robot-card">
+          <canvas id="landingCanvas"></canvas>
+          <div class="robot-orb">🤖</div>
+          <div class="robot-badge">Deterministic • Zero Hallucination • Local Storage</div>
+        </article>
+      </section>
+
+      <article class="glass-card section-card" id="core-ai-concepts">
+        <p class="eyebrow">Core AI Concepts Behind DecoBot</p>
+        <h2>Core AI Concepts Behind DecoBot</h2>
+        <p>A modern, glassmorphism tour of the logic behind every response — transparent, fast, and fully explainable.</p>
+        <div class="concept-grid">
+          <article class="concept-panel"><span class="pill">1 · IPO</span><h3>IPO Model (Input → Process → Output)</h3><p>Every intelligent system follows the same simple flow: clean input, apply rules, generate output.</p><div class="concept-mini-flow"><span>Input</span><span>Process</span><span>Output</span></div><div class="concept-quick"><span class="concept-chip">hello</span><span class="concept-chip">Greeting Rule</span><span class="concept-chip">Hello User</span></div></article>
+          <article class="concept-panel"><span class="pill">2 · White Box</span><h3>White Box AI</h3><p>DecoBot is transparent by design. Every decision path can be traced, audited, and explained.</p><div class="concept-quick"><span class="concept-chip">Traceability</span><span class="concept-chip">Safety</span><span class="concept-chip">Explainability</span></div></article>
+          <article class="concept-panel"><span class="pill">3 · Hybrid</span><h3>Hybrid Architecture</h3><p>User input enters the rule engine, then follows a fast path or a safe fallback response.</p><div class="concept-mini-flow"><span>User Input</span><span>Rule Match?</span><span>Instant / Fallback</span></div></article>
+          <article class="concept-panel"><span class="pill">4 · O(1)</span><h3>Dictionary Lookup Architecture</h3><p>Dictionary lookup is faster than long if-else ladders because the lookup is constant time and predictable.</p><div class="concept-quick"><span class="concept-chip">If-Else → O(n)</span><span class="concept-chip">Lookup → O(1)</span></div></article>
+          <article class="concept-panel"><span class="pill">5 · Loop</span><h3>Continuous Chatbot Loop</h3><p>DecoBot continuously waits, reads input, applies rules, produces output, and repeats.</p><div class="loop-ring"><span>while(true)</span></div></article>
+          <article class="concept-panel"><span class="pill">6 · Explainable AI</span><h3>Explainable AI</h3><p>Every response can show why it was generated: the rule, the phrase, and the final answer.</p><div class="concept-quick"><span class="concept-chip">User: hello</span><span class="concept-chip">Rule: Greeting</span><span class="concept-chip">Response: Hello User</span></div></article>
+          <article class="concept-panel"><span class="pill">7 · Rule-Based</span><h3>Rule-Based Chatbot</h3><p>Deterministic responses, no machine learning, no APIs, and clear logic for fast debugging.</p><div class="concept-quick"><span class="concept-chip">Deterministic</span><span class="concept-chip">Fast</span><span class="concept-chip">Transparent</span></div></article>
+          <article class="concept-panel"><span class="pill">Mini Demo</span><h3>Friendly Rule Demo</h3><p>Type “hello” and DecoBot uses the greeting rule. The logic stays visible and easy to audit.</p><div class="mini-chat-demo"><div class="mini-chat-bubble user">User: hello</div><div class="mini-chat-bubble">Bot: Greeting Rule Detected</div><div class="mini-chat-bubble">Bot: Hello User</div></div></article>
+        </div>
+        <div class="concept-demo">
+          <article class="demo-box">
+            <h3>Why it feels modern</h3>
+            <p>Glassmorphism panels, animated flow hints, and clear rule explanations keep the learning experience interactive without losing the rule-driven engine behind it.</p>
+            <div class="demo-grid">
+              <div class="demo-row"><strong>Traceability</strong><span>Every rule path is visible</span></div>
+              <div class="demo-row"><strong>Safety</strong><span>No hallucinated answers</span></div>
+              <div class="demo-row"><strong>Speed</strong><span>Dictionary O(1) response mapping</span></div>
+            </div>
+          </article>
+          <article class="demo-box">
+            <h3>DecoBot loop</h3>
+            <p>Input → Process → Output → Repeat. This loop makes the assistant responsive, consistent, and easy to inspect while it chatters in real time.</p>
+            <div class="mini-chat-demo">
+              <div class="mini-chat-bubble">🤖 DecoBot Initializing…</div>
+              <div class="mini-chat-bubble">✅ Rule Engine Loaded</div>
+              <div class="mini-chat-bubble">👋 Hello there, welcome to DecoBot.</div>
+            </div>
+          </article>
+        </div>
+        <div class="hero-actions concept-actions" style="margin-top:10px;">
+          <button class="soft-btn primary" type="button" data-launch-app>Launch DecoBot 🚀</button>
+          <a class="soft-btn" href="#features">Explore the full feature deck ↓</a>
+        </div>
+      </article>
+
+      <article class="glass-card section-card" id="features">
+        <p class="eyebrow">Bot Specifications</p>
+        <h2>DecoBot v4.0 — Rule-Based Intelligence</h2>
+        <p>Transparent control flow, deterministic responses and local-only persistence.</p>
+        <div class="spec-grid">
+          <div class="spec-item"><span>Bot Name</span><strong>DecoBot v4.0</strong></div>
+          <div class="spec-item"><span>Company</span><strong>DecodeLabs</strong></div>
+          <div class="spec-item"><span>Batch</span><strong>2026</strong></div>
+          <div class="spec-item"><span>Module</span><strong>01 — Architecture Briefing</strong></div>
+          <div class="spec-item"><span>Type</span><strong>Rule-Based AI — Deterministic</strong></div>
+          <div class="spec-item"><span>Memory</span><strong>Persistent localStorage</strong></div>
+          <div class="spec-item"><span>Lookup</span><strong>Dictionary O(1) — not if-elif O(n)</strong></div>
+          <div class="spec-item"><span>Hallucination Risk</span><strong>Zero</strong></div>
+          <div class="spec-item"><span>Response Engine</span><strong>Keyword and Sentiment Detection</strong></div>
+          <div class="spec-item"><span>Games</span><strong>Rock Paper Scissors, Trivia Quiz</strong></div>
+          <div class="spec-item"><span>Trackers</span><strong>Mood, Habit, Budget, Notes</strong></div>
+          <div class="spec-item"><span>Learning</span><strong>Word of Day, Horoscope, Music by Mood</strong></div>
+        </div>
+      </article>
+
+      <article class="glass-card section-card">
+        <p class="eyebrow">The Blueprint</p>
+        <h2>The Blueprint — IPO Model</h2>
+        <p>The foundational architecture of every intelligent system.</p>
+        <div class="ipo-grid">
+          <div class="mini-box gradient-a"><h3>INPUT (Raw Feed)</h3><p>Sanitization and Normalization — raw.toLowerCase().trim()</p></div>
+          <div class="mini-box gradient-b"><h3>PROCESS (Logic Skeleton)</h3><p>Intent Matching — Dictionary O(1) Lookup</p></div>
+          <div class="mini-box gradient-c"><h3>OUTPUT (Feedback Loop)</h3><p>Response Generation — Reply with memory save</p></div>
+        </div>
+        <div class="arrow-flow"><span></span> Animated data flow from INPUT to OUTPUT <span></span></div>
+        <p>The IPO model provides the foundational blueprint for transparent and controlled AI systems.</p>
+      </article>
+
+      <article class="glass-card section-card">
+        <p class="eyebrow">White Box</p>
+        <h2>The Strategic Necessity of the White Box</h2>
+        <div class="white-grid">
+          <div class="mini-box gradient-a"><h3>TRACEABILITY 🔍</h3><p>Input → Logic → Output. No mystery. Every response fully explainable.</p></div>
+          <div class="mini-box gradient-b"><h3>SAFETY 🛡️</h3><p>Zero hallucination risk. 100% hard-coded. What you define is what fires.</p></div>
+          <div class="mini-box gradient-c"><h3>COMPLIANCE ✅</h3><p>Deterministic guardrails. Essential for Finance and Healthcare systems.</p></div>
+        </div>
+        <div class="quote-card"><p><strong>Rule-based program is a white box</strong> — the interpreter can always provide straightforward explanations.</p></div>
+      </article>
+
+      <article class="glass-card section-card" id="how-it-works">
+        <p class="eyebrow">Hybrid Architecture</p>
+        <h2>The Hybrid Architecture</h2>
+        <p>Rule-based reliability. Instant deterministic response.</p>
+        <div class="hybrid-grid">
+          <div class="flow-card blue"><span class="chip">USER QUESTION</span><h3>Top Input</h3><p>Natural language enters the system.</p></div>
+          <div class="flow-card cyan"><span class="chip">RULE MATCH?</span><h3>Decision Node</h3><p>Keyword, sentiment and dictionary lookup decide the path.</p></div>
+          <div class="flow-card green"><span class="chip">INSTANT RESPONSE</span><h3>Fast Path</h3><p>Speed O(1) — deterministic result.</p></div>
+          <div class="flow-card orange"><span class="chip">FALLBACK RESPONSE</span><h3>Default Path</h3><p>Clear fallback when no rule applies.</p></div>
+        </div>
+        <p>DecoBot always fires the fastest path first.</p>
+      </article>
+
+      <article class="glass-card section-card">
+        <p class="eyebrow">AI Comparison</p>
+        <h2>Two Types of AI — DecoBot is The Engineer</h2>
+        <div class="mind-grid">
+          <div class="compare-card"><h3>System 1: The Artist</h3><p>Probabilistic. Learns from data. Flexible but unpredictable. Hallucination risk.</p></div>
+          <div class="compare-card"><h3>System 2: The Engineer</h3><p>Deterministic. Explicit rules. Transparent. Zero hallucination. Full control. <strong>DecoBot badge</strong></p></div>
+        </div>
+        <div class="quote-card"><p>Before you can manage the chaos of a probability engine, you must master the precision of a logic engine.</p></div>
+      </article>
+
+      <article class="glass-card section-card">
+        <p class="eyebrow">Complexity</p>
+        <h2>Why Dictionary O(1) Beats If-Elif O(n)</h2>
+        <div class="compare-grid">
+          <div class="compare-card"><h3>❌ If-Elif Ladder Anti-Pattern</h3><p>Linear O(n) complexity, high technical debt, cascading failures at scale, unstable.</p></div>
+          <div class="compare-card"><h3>✅ Dictionary Approach — DecoBot</h3><p>Constant O(1) time, instant lookup regardless of size, clean and scalable, professional.</p></div>
+        </div>
+        <div class="quote-card"><p>responses.get(user_input, "I do not understand.")</p><p style="margin-top:8px; color:#bfdbfe; font-size:0.9rem;">Atomic Operation — Lookup and Fallback in one</p></div>
+      </article>
+
+      <article class="glass-card section-card">
+        <p class="eyebrow">How It Works</p>
+        <h2>3 Simple Steps</h2>
+        <div class="steps-grid">
+          <div class="step-card"><span class="pill">Step 1</span><h3>Introduce Yourself 👤</h3><p>Tell DecoBot your name. It saves to localStorage and remembers you on every return visit.</p></div>
+          <div class="step-card"><span class="pill">Step 2</span><h3>Chat Naturally 💬</h3><p>Ask questions, play games, track habits, set budgets, get motivated. Pure rule-based logic, zero hallucination.</p></div>
+          <div class="step-card"><span class="pill">Step 3</span><h3>Watch Yourself Grow 📈</h3><p>Achievements unlock as you interact. Charts fill with your real data. Every visit builds your profile.</p></div>
+        </div>
+      </article>
+
+      <article class="glass-card section-card">
+        <p class="eyebrow">Core Features</p>
+        <h2>Features Grid</h2>
+        <div class="features-grid">
+          <div class="feature-card"><div class="emoji">💬</div><h3>Smart Chat</h3><p>Keyword and sentiment detection</p></div>
+          <div class="feature-card"><div class="emoji">😊</div><h3>Mood Tracker</h3><p>Log and chart mood history</p></div>
+          <div class="feature-card"><div class="emoji">💪</div><h3>Habit Tracker</h3><p>Streaks and weekly progress</p></div>
+          <div class="feature-card"><div class="emoji">💰</div><h3>Budget Tracker</h3><p>Spending chart and warnings</p></div>
+          <div class="feature-card"><div class="emoji">🎮</div><h3>Games</h3><p>Rock Paper Scissors and Trivia Quiz</p></div>
+          <div class="feature-card"><div class="emoji">📝</div><h3>Notes</h3><p>Add, edit and delete personal notes</p></div>
+          <div class="feature-card"><div class="emoji">🏆</div><h3>Achievements</h3><p>Rule-triggered badge system</p></div>
+          <div class="feature-card"><div class="emoji">📚</div><h3>Word of the Day</h3><p>Daily rotating vocabulary</p></div>
+          <div class="feature-card"><div class="emoji">⭐</div><h3>Horoscope</h3><p>All 12 zodiac signs</p></div>
+          <div class="feature-card"><div class="emoji">🎵</div><h3>Music by Mood</h3><p>Playlist by feeling</p></div>
+          <div class="feature-card"><div class="emoji">⏰</div><h3>Timer</h3><p>Countdown with live display</p></div>
+          <div class="feature-card"><div class="emoji">🔒</div><h3>Password Lock</h3><p>Protect your profile</p></div>
+        </div>
+      </article>
+
+      <article class="glass-card section-card" id="about">
+        <p class="eyebrow">DecodeLabs</p>
+        <h2>Powered by DecodeLabs 🚀</h2>
+        <div class="about-grid">
+          <div class="badge-card">
+            <p>DecodeLabs is an AI training company based in Greater Lucknow, India. DecoBot is Project 1 of the Industrial Training Kit — Batch 2026, where interns build real AI systems using pure control flow and logic.</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
+              <span class="pill">Batch 2026</span>
+              <span class="pill">Industrial Training</span>
+              <span class="pill">AI Engineering</span>
+            </div>
+          </div>
+          <div class="badge-card">
+            <h3 style="margin:0 0 8px; font-family:'Poppins',sans-serif;">Qualification Criteria</h3>
+            <p><strong>Requirement:</strong> Complete Project 1 to unlock further projects</p>
+            <p><strong>Standard:</strong> All projects verified for quality</p>
+            <p><strong>Mandatory:</strong> Project 1 is the essential start for every intern</p>
+            <p style="margin-top:8px;">Earn Your Badge - the first project is the foundation for every future build.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="footer-card">
+        <div class="footer-grid">
+          <div class="footer-note-block">
+            <p style="font-weight:800; font-family:'Poppins',sans-serif; font-size:1.05rem; color:#111827;">DecoBot 🤖 — Built with pure logic. Powered by DecodeLabs.</p>
+            <p class="footer-links" style="margin-top:8px;"><a href="#home">Home</a><a href="#features">Features</a><a href="#how-it-works">How It Works</a><button type="button" class="soft-btn" data-launch-app style="padding:6px 10px; font-size:0.9rem;">Launch App</button></p>
+          </div>
+          <div class="footer-contact">
+            <div>📞 +91 89330 06408</div>
+            <div>✉️ <a href="mailto:decodelabs.tech@gmail.com">decodelabs.tech@gmail.com</a></div>
+            <div>🌎 <a href="http://www.decodelabs.tech" target="_blank" rel="noreferrer">www.decodelabs.tech</a></div>
+            <div>📍 Greater Lucknow, India</div>
+          </div>
+        </div>
+        <p style="margin-top:10px; color:#475569; font-size:0.92rem;">Batch 2026 | DecodeLabs Industrial Training Kit | Project 1 — Rule-Based AI Chatbot 🤖</p>
+      </article>
+    </div>
+  </section>
+
+  <main id="appShell" class="app-shell" style="opacity:0; transition:opacity 0.8s ease;">
+    <div id="welcomeModal" class="welcome-backdrop hidden" aria-hidden="true">
+      <article class="welcome-card">
+        <p class="eyebrow">Welcome Setup</p>
+        <h2>What should I call you?</h2>
+        <p>DecoBot remembers your name in localStorage so every greeting, dashboard card, and study reminder feels personal.</p>
+        <label class="field" style="display:grid; gap:6px;">
+          <span>Your name</span>
+          <input id="welcomeNameInput" type="text" placeholder="Enter your name" autocomplete="name" />
+        </label>
+        <div class="hero-actions">
+          <button id="saveNameBtn" class="soft-btn primary" type="button">Save name</button>
+          <button id="skipNameBtn" class="soft-btn" type="button">Use “Explorer”</button>
+        </div>
+      </article>
+    </div>
+
+    <div id="loginModal" class="welcome-backdrop hidden" aria-hidden="true">
+      <article class="welcome-card">
+        <p class="eyebrow">🔒 Protected</p>
+        <h2>Enter your password</h2>
+        <p>This profile is password-protected. Enter your password to continue.</p>
+        <label class="field" style="display:grid; gap:6px;">
+          <span>Password</span>
+          <input id="loginPasswordInput" type="password" placeholder="Enter your password" />
+        </label>
+        <p id="loginError" style="color:#ef4444; font-size:0.86rem; display:none;">Wrong password. Try again.</p>
+        <div class="hero-actions">
+          <button id="loginSubmitBtn" class="soft-btn primary" type="button">Unlock</button>
+        </div>
+      </article>
+    </div>
+
+    <header class="app-topbar">
+      <div class="topbar-group">
+        <button id="collapseDashboardBtn" class="icon-btn" type="button" aria-label="Collapse dashboard">◀</button>
+        <div class="brand-pill"><span class="dot"></span> DecoBot • App</div>
+      </div>
+      <div class="search-box" aria-label="Search chat history">
+        <span>🔍</span>
+        <input id="chatSearch" type="search" placeholder="Search chats, habits, notes…" />
+      </div>
+      <div class="topbar-group">
+        <button id="themeLiteBtn" class="icon-btn theme-btn" type="button" aria-label="Use lite mode">☀️ Lite</button>
+        <button id="themeDarkBtn" class="icon-btn theme-btn" type="button" aria-label="Use dark mode">🌙 Dark</button>
+        <button class="icon-btn" type="button" aria-label="Notifications">🔔 <span id="achievementBadge">0</span></button>
+        <button class="icon-btn" type="button" aria-label="User profile">👤</button>
+        <button id="backupBtn" class="primary-btn" type="button">Backup</button>
+        <button id="exportBtn" class="primary-btn" type="button">Export</button>
+      </div>
+    </header>
+
+    <section class="app-grid">
+      <aside id="dashboardPanel" class="dashboard-panel">
+        <article class="panel dashboard-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Personal</p>
+              <h2 class="panel-title">My Dashboard</h2>
+              <p class="panel-copy">A live workspace built directly from localStorage.</p>
+            </div>
+            <span class="badge">Live</span>
+          </div>
+          <div class="panel-body">
+            <div class="stat-mini-row">
+              <div class="mini-stat"><span>Messages</span><strong id="miniMessages">0</strong></div>
+              <div class="mini-stat"><span>Streak</span><strong id="miniStreak">0</strong></div>
+              <div class="mini-stat"><span>Habits</span><strong id="miniHabits">0</strong></div>
+              <div class="mini-stat"><span>Achievements</span><strong id="miniAchievements">0</strong></div>
+            </div>
+            <div id="statsGrid" class="stats-grid" style="margin-top:12px;"></div>
+          </div>
+        </article>
+
+        <article class="panel profile-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Profile</p>
+              <h2 class="panel-title">Your DecoBot profile</h2>
+              <p class="panel-copy">Set your details once. The profile view only shows what you actually saved.</p>
+            </div>
+            <span class="badge">Local only</span>
+          </div>
+          <form id="profileForm" class="panel-grid" style="padding:0 18px 18px; gap:14px;">
+            <div class="mini-grid">
+              <div class="field"><label for="nameInput">Name</label><input id="nameInput" name="name" placeholder="Your name" /></div>
+              <div class="field"><label for="roleInput">Role</label><input id="roleInput" name="role" placeholder="Your role" /></div>
+            </div>
+            <div class="mini-grid">
+              <div class="field"><label for="focusInput">Focus</label><input id="focusInput" name="focus" placeholder="Your focus area" /></div>
+              <div class="field"><label for="goalInput">Goal</label><input id="goalInput" name="goal" placeholder="Your goal" /></div>
+            </div>
+            <div class="field"><label for="bioInput">Bio</label><textarea id="bioInput" name="bio" placeholder="Your bio"></textarea></div>
+            <div style="display:flex; justify-content:flex-end;"><button class="primary-btn" type="submit">Save profile</button></div>
+          </form>
+          <div id="profilePreview" class="panel-grid" style="padding:0 18px 18px;"></div>
+        </article>
+
+        <article class="panel dashboard-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Summary</p>
+              <h2 class="panel-title">Today</h2>
+              <p id="todaySummaryText" class="panel-copy">Loading today’s story…</p>
+            </div>
+            <span id="todayMoodDot" class="badge">⚪</span>
+          </div>
+          <div class="panel-body">
+            <div class="mini-stat"><span>Messages today</span><strong id="todayMessagesCount">0</strong></div>
+            <div class="mini-stat"><span>Habits done</span><strong id="todayHabitsCount">0 of 0</strong></div>
+            <div class="mini-stat"><span>Budget</span><strong id="todayBudgetText">No budget set</strong></div>
+          </div>
+        </article>
+
+        <article class="panel dashboard-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Mood</p>
+              <h2 class="panel-title">Mood This Week 😊</h2>
+              <p class="panel-copy">Bar chart appears only when real mood history exists.</p>
+            </div>
+            <span class="badge">Chart.js</span>
+          </div>
+          <div class="panel-body">
+            <div id="miniTrendWrap" class="chart-wrap"></div>
+            <div id="moodBanner" class="badge" style="display:none;">Mood alert</div>
+          </div>
+        </article>
+
+        <article class="panel dashboard-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Habits</p>
+              <h2 class="panel-title">Habit Tracker</h2>
+              <p class="panel-copy">Your real habit streaks and completions are read from localStorage.</p>
+            </div>
+            <button class="icon-btn" type="button">＋</button>
+          </div>
+          <div id="habitList" class="panel-body"></div>
+        </article>
+
+        <article class="panel dashboard-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Budget</p>
+              <h2 class="panel-title">Budget Tracker</h2>
+              <p class="panel-copy">Spending slices and warnings update from your real budget data.</p>
+            </div>
+            <span class="badge">Live</span>
+          </div>
+          <div id="budgetPanel" class="panel-body"></div>
+        </article>
+
+        <article class="panel dashboard-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Calendar</p>
+              <h2 class="panel-title">Mini Calendar</h2>
+              <p class="panel-copy">Only real activity days are highlighted.</p>
+            </div>
+            <span id="calendarMonthLabel" class="badge">This month</span>
+          </div>
+          <div class="panel-body"><div id="calendarGrid" class="calendar-grid"></div><p id="calendarHint" class="hint" style="margin-top:8px; font-size:0.82rem;"></p></div>
+        </article>
+
+        <article class="panel dashboard-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Notes</p>
+              <h2 class="panel-title">Pinned Notes</h2>
+              <p class="panel-copy">The first three real notes are shown here.</p>
+            </div>
+            <span id="notesCountBadge" class="badge">0</span>
+          </div>
+          <div id="notesPreview" class="panel-body"></div>
+        </article>
+      </aside>
+
+      <section class="chat-panel">
+        <article class="panel chat-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Bot</p>
+              <h2 class="panel-title">DecoBot — Rule-Based Assistant</h2>
+              <p class="panel-copy">Search, command, and chat directly from the live app panel.</p>
+            </div>
+            <span class="badge">Online</span>
+          </div>
+          <div class="chat-shell">
+            <div class="chat-main">
+              <div class="chip-row" style="padding:0 18px;">
+                <button class="mini-chip c1" type="button">😄 Joke</button>
+                <button class="mini-chip c2" type="button">💪 Motivate</button>
+                <button class="mini-chip c3" type="button">❓ Quiz</button>
+                <button class="mini-chip c4" type="button">📚 Word</button>
+                <button class="mini-chip c5" type="button">💰 Budget</button>
+              </div>
+              <div id="chatWindow" class="chat-window"></div>
+              <form id="chatForm" class="chat-input-row" style="position:relative;">
+                <input id="chatInput" type="text" placeholder="Type a message..." style="width:100%; border-radius:12px; padding:10px 12px; border:1px solid rgba(148,163,184,0.25); background:rgba(255,255,255,0.95); color:#111827; font: inherit;" />
+                <button id="micBtn" class="mic-btn" type="button" aria-label="Voice input">🎤</button>
+                <button id="emojiBtn" class="emoji-btn" type="button" aria-label="Emoji picker">😊</button>
+                <button class="primary-btn" type="submit">Send</button>
+                <div id="emojiPicker" class="emoji-picker" aria-label="Emoji picker">
+                  <div class="emoji-grid"></div>
+                </div>
+              </form>
+            </div>
+            <aside class="command-sidebar">
+              <div>
+                <p class="eyebrow">Quick commands</p>
+                <h3>Start with one tap</h3>
+                <p class="panel-copy">These actions appear beside the chat so the bot feels ready the moment the app opens.</p>
+              </div>
+              <div id="commandQuickList" class="command-rail"></div>
+              <div class="welcome-note">Tip: press Ctrl+K or / for the full command palette.</div>
+            </aside>
+          </div>
+        </article>
+
+        <article class="panel chart-card">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Capture</p>
+              <h2 class="panel-title">Activity log</h2>
+              <p class="panel-copy">Add a real session to generate live numbers, charts, and calendar highlights.</p>
+            </div>
+            <span class="badge">Real events only</span>
+          </div>
+          <form id="activityForm" class="panel-grid" style="padding:0 18px 18px; gap:12px;">
+            <div class="mini-grid">
+              <div class="field"><label for="activityDate">Date</label><input id="activityDate" name="date" type="date" required /></div>
+              <div class="field"><label for="activityMinutes">Minutes</label><input id="activityMinutes" name="minutes" type="number" min="1" step="1" placeholder="Minutes" required /></div>
+            </div>
+            <div class="mini-grid">
+              <div class="field"><label for="activityMood">Mood</label><select id="activityMood" name="mood"><option value="Focused">Focused</option><option value="Calm">Calm</option><option value="Creative">Creative</option><option value="Energetic">Energetic</option></select></div>
+              <div class="field"><label for="activityLabel">Label</label><input id="activityLabel" name="label" placeholder="Activity label" required /></div>
+            </div>
+            <div style="display:flex; justify-content:flex-end;"><button class="primary-btn" type="submit">Save activity</button></div>
+          </form>
+        </article>
+
+        <div class="analytics-grid">
+          <article class="panel chart-card">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Charts</p>
+                <h2 class="panel-title">Weekly focus trend</h2>
+                <p class="panel-copy">This chart uses only real activity minutes read from localStorage.</p>
+              </div>
+              <span class="badge">Chart.js</span>
+            </div>
+            <div id="trendWrap" class="chart-wrap"></div>
+          </article>
+          <article class="panel chart-card">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Charts</p>
+                <h2 class="panel-title">Mood mix</h2>
+                <p class="panel-copy">A distribution chart appears only when saved activity data exists.</p>
+              </div>
+              <span class="badge">Live data</span>
+            </div>
+            <div id="moodWrap" class="chart-wrap"></div>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <div class="floating-stack">
+      <button class="fab" id="quickNoteBtn" type="button" title="Quick note">📝</button>
+      <button class="fab secondary" id="quickMoodBtn" type="button" title="Log mood">😊</button>
+      <button class="fab" id="scrollTopBtn" type="button" title="Scroll to top">↑</button>
+    </div>
+
+    <div class="command-palette" id="commandPalette" aria-hidden="true">
+      <div class="command-box">
+        <input id="commandInput" type="text" placeholder="Search commands or type /" />
+        <div id="commandList" class="command-list"></div>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <span class="status-chip">🤖 DecoBot v4.0 | Batch 2026 | DecodeLabs</span>
+      <span class="status-chip" id="statusCenter">🔥 0 streak • ⚪ mood • 💬 0 today</span>
+      <span class="status-chip" id="statusRight">💾 Auto-saved • <span id="liveClock">--:--:--</span></span>
+    </div>
+
+    <button class="scroll-top" id="scrollTopArrow" type="button" aria-label="Scroll to top">↑</button>
+    <div id="achievementToast" class="toast" role="status" aria-live="polite"></div>
+
+    <p class="footer-note">DecoBot v4.0 • All content is stored in your browser by localStorage. No backend, no database, no sample data.</p>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+
+</body>
+</html>
+
